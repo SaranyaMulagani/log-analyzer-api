@@ -1,0 +1,34 @@
+2024-01-15 08:00:01 INFO  Application starting up...
+2024-01-15 08:00:02 INFO  Loading configuration from config.yaml
+2024-01-15 08:00:03 INFO  Database connection established: postgresql://prod-db:5432
+2024-01-15 08:00:05 INFO  Server started on port 8080
+2024-01-15 08:01:12 INFO  User login: user_id=1042, ip=192.168.1.10
+2024-01-15 08:02:45 INFO  Processing request: GET /api/orders
+2024-01-15 08:03:10 WARNING  High memory usage detected: 78% used
+2024-01-15 08:04:22 ERROR  Database connection timeout after 30s
+  at db.connect (database.py:145)
+  at OrderService.getOrders (order_service.py:89)
+2024-01-15 08:04:23 ERROR  Failed to fetch orders for user_id=1042
+  Exception: ConnectionTimeoutError: Could not reach postgresql://prod-db:5432
+2024-01-15 08:04:25 WARNING  Retrying database connection (attempt 1/3)
+2024-01-15 08:04:55 WARNING  Retrying database connection (attempt 2/3)
+2024-01-15 08:05:25 ERROR  Retrying database connection (attempt 3/3) - FAILED
+2024-01-15 08:05:26 CRITICAL All database retry attempts exhausted
+2024-01-15 08:05:26 ERROR  NullPointerException in PaymentService
+  at PaymentService.processPayment (payment_service.py:234)
+  at OrderController.checkout (order_controller.py:112)
+  Caused by: java.lang.NullPointerException: payment_gateway is null
+2024-01-15 08:05:30 ERROR  HTTP 500 returned to client for /api/checkout
+2024-01-15 08:05:31 WARNING  Memory usage critical: 94% used
+2024-01-15 08:05:45 ERROR  OutOfMemoryError: Java heap space
+  at java.util.Arrays.copyOf(Arrays.java:3210)
+  at OrderProcessor.loadBatch (order_processor.py:67)
+2024-01-15 08:06:00 CRITICAL Application crash detected — restarting service
+2024-01-15 08:06:15 INFO  Service restarted successfully
+2024-01-15 08:06:16 INFO  Running database health check...
+2024-01-15 08:06:17 ERROR  Database health check failed — DB unreachable
+2024-01-15 08:07:00 WARNING  Switching to read-only mode due to DB unavailability
+2024-01-15 08:08:12 INFO  Read-only mode active — writes disabled
+2024-01-15 08:10:00 INFO  Database connection restored
+2024-01-15 08:10:01 INFO  Switching back to normal operation mode
+2024-01-15 08:10:05 INFO  All services running normally
